@@ -1,5 +1,8 @@
-
-# Caffeine - Chrome Extension
+<h1 align="center">
+  Caffeine - Chrome Extension
+  <br>
+  <img src="https://github.com/user-attachments/assets/5aa9b050-0811-4719-b44c-2f1ffaf7783c" alt="icon48" width="100">
+</h1>
 
 Caffeine is a productivity-focused Chrome extension that helps you stay on track by blocking distracting websites and promoting focused work sessions. Set a timer, block your distractions, and stay productive with Caffeine!
 
@@ -31,7 +34,7 @@ Caffeine is a productivity-focused Chrome extension that helps you stay on track
 
 ## Screenshots
 
-![Caffeine Extension Popup](https://your-image-link.com)
+![Caffeine Extension Popup](https://github.com/user-attachments/assets/a22759d8-07df-43e8-b849-da71441dea31)
 
 ## Sounds
 
