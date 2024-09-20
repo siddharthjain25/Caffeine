@@ -18,7 +18,7 @@ Caffeine is a productivity-focused Chrome extension that helps you stay on track
 
 1. Clone this repository or download the code as a zip file.
    ```bash
-   git clone https://github.com/yourusername/caffeine-extension.git
+   git clone https://github.com/siddharthjain25/Caffeine.git
    ```
 2. Open Chrome and navigate to `chrome://extensions/`.
 3. Enable **Developer Mode** in the top right corner.
@@ -50,11 +50,5 @@ Caffeine is a productivity-focused Chrome extension that helps you stay on track
 5. Push to the branch: `git push origin feature-name`
 6. Submit a pull request.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-**Developed by [Your Name]**  
-For any issues or suggestions, feel free to create a new issue on GitHub or contact me at [your-email@example.com].
+**Developed by Siddharth Jain**  
+For any issues or suggestions, feel free to create a new issue on GitHub or contact me at siddharthjainj25@gmail.com.
