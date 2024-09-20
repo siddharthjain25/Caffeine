@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caffeine Mode</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="slider.css">
+</head>
+
+<body>
+    <div class="popup-container">
+        <img src="icons/icon48.png" class="logo" style="height: 80px;"/>
+        <h1 class="title">Caffeine Mode</h1>
+
+        <div class="timer-container">
+            <p id="timerDisplay" class="timer">00:00</p>
+        </div>
+
+        <div class="input-container">
+            <label for="focusTime">Caffeine Time (minutes)</label>
+            <input class="range" type="range" id="focusTime" value="5" min="1" max="120"/>
+            <span id="focusTimeValue">5 minutes</span>
+        </div>
+
+        <div class="input-container">
+            <label for="blockedLinks">Blocked Websites (Seperate by commas)</label>
+            <textarea id="blockedLinks" placeholder="Add websites separated by commas"></textarea>
+        </div>
+
+        <div class="checkbox-con">
+            <input type="checkbox" id="fullRestriction" />
+            <label for="fullRestriction">Full Restriction Mode</label>
+        </div>
+
+        <div class="button-container">
+            <button class="button-54" id="start" role="button">Start</button>
+            <button class="button-54" id="stop" role="button">Stop</button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+    
+</body>
+
+</html>
