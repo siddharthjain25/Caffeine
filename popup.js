@@ -9,10 +9,6 @@ const fullRestrictionCheckbox = document.getElementById("fullRestriction");
 let focusActive = false;
 let fullRestrictionMode = false;
 
-// Load audio files
-const startSound = new Audio(chrome.runtime.getURL("sounds/start.mp3"));
-const endSound = new Audio(chrome.runtime.getURL("sounds/end.mp3"));
-
 // Function to update timer display
 function updateTimerDisplay(timeLeft) {
   let minutes = Math.floor(timeLeft / 60);
@@ -67,7 +63,6 @@ function startTimer() {
       console.error("Message error:", chrome.runtime.lastError);
     } else {
       console.log(response.result);
-      startSound.play(); // Play start sound
     }
   });
 
@@ -83,7 +78,6 @@ function stopTimer() {
     return;
   }
 
-  endSound.play(); // Play end sound when focus ends
   chrome.runtime.sendMessage({ command: "stopFocus" }, (response) => {
     if (chrome.runtime.lastError) {
       console.error("Message error:", chrome.runtime.lastError);
@@ -149,7 +143,5 @@ stopButton.addEventListener("click", stopTimer);
 chrome.runtime.onMessage.addListener((message) => {
   if (message.command === "updateTimer") {
     updateTimerDisplay(message.timeLeft);
-  } else if (message.command === "focusEnd" || message.command === "playEndSound") {
-    endSound.play(); // Play end sound when focus ends
-  } 
+  }
 });

@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Caffeine",
-    "version": "1.0",
+    "name": "Caffeine Mode",
     "description": "A productivity extension that helps you focus by blocking distracting websites.",
+    "version": "1.0",
     "permissions": [
         "tabs",
         "alarms",
@@ -10,31 +10,17 @@
         "storage",
         "activeTab",
         "scripting",
-        "webRequest"
+        "webRequest",
+        "offscreen"
     ],
-    "action": {
-        "default_popup": "popup.html"
-    },
     "background": {
         "service_worker": "background.js"
     },
-    "icons": {
-        "16": "icons/icon48.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon48.png"
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "icons/icon48.png"
     },
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "sounds/start.mp3",
-                "sounds/end.mp3"
-            ],
-            "matches": [
-                "<all_urls>"
-            ]
-        }
-    ],
-    "host_permissions": [
-        "*://*/*"
-    ]
+    "icons": {
+        "48": "icons/icon48.png"
+    }
 }

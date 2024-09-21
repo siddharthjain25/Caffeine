@@ -1,8 +1,22 @@
 let blockedWebsites = [];
-let focusTime = 25 * 60; // Default 25 minutes in seconds
+let focusTime = 5 * 60; // Default 25 minutes in seconds
 let focusActive = false; // Tracks whether focus mode is active
 let fullRestrictionMode = false; // Tracks whether full restriction mode is enabled
 let remainingTime = focusTime; // Remaining time in seconds
+
+async function playSound(source = "sounds/start.mp3", volume = 1) {
+  await createOffscreen();
+  await chrome.runtime.sendMessage({ play: { source, volume } });
+}
+
+async function createOffscreen() {
+  if (await chrome.offscreen.hasDocument()) return;
+  await chrome.offscreen.createDocument({
+    url: "offscreen.html",
+    reasons: ["AUDIO_PLAYBACK"],
+    justification: "Playing sound for focus session.",
+  });
+}
 
 // Function to start focus mode
 function startFocusSession() {
@@ -29,10 +43,11 @@ function startFocusSession() {
       chrome.notifications.create({
         type: "basic",
         iconUrl: "icons/icon48.png",
-        title: "Caffeine Mode",
+        title: "Caffeine",
         message: "Caffeine session started. Stay productive!",
       });
 
+      playSound("sounds/start.mp3", 1); // Play start sound
       console.log("Caffeine session started.");
 
       // Disable stop button in popup if full restriction mode is enabled
@@ -46,14 +61,14 @@ function startFocusSession() {
 // Function to stop focus mode
 function stopFocusSession() {
   if (fullRestrictionMode) {
+    playSound("sounds/end.mp3", 1); // Play end sound
     // Full restriction mode is enabled; notify user
     chrome.notifications.create({
       type: "basic",
       iconUrl: "icons/icon48.png",
-      title: "Caffeine Mode",
+      title: "Caffeine",
       message: "Caffeine session cannot be stopped in Full Restriction Mode.",
     });
-    chrome.runtime.sendMessage({ command: "playEndSound" });
     return; // Do nothing if full restriction mode is enabled
   }
 
@@ -64,8 +79,8 @@ function stopFocusSession() {
       chrome.notifications.create({
         type: "basic",
         iconUrl: "icons/icon48.png",
-        title: "Caffeine Mode Stopped",
-        message: "Caffeine session has been stopped.",
+        title: "Caffeine",
+        message: "Caffeine session has been ended.",
       });
       console.log("Caffeine session stopped.");
     } else {
@@ -91,6 +106,8 @@ function updateTimer() {
 
     // Schedule the next update in 1 second
     setTimeout(updateTimer, 1000);
+  } else if (remainingTime <= 0) {
+    playSound("sounds/end.mp3", 1); // Play end sound
   }
 }
 
@@ -138,10 +155,10 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     chrome.notifications.create({
       type: "basic",
       iconUrl: "icons/icon48.png", // Ensure this path is correct
-      title: "Caffeine Time Up",
+      title: "Caffeine",
       message: "Caffeine session ended!",
     });
-    chrome.runtime.sendMessage({ command: "playEndSound" });
+    playSound("sounds/end.mp3", 1); // Play end sound
     // Reactivate the stop button in popup if full restriction mode was enabled
     chrome.storage.sync.set({ focusActive: false, remainingTime: 0 });
   }
